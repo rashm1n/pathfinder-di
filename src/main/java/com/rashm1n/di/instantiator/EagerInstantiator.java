@@ -14,7 +14,6 @@ public class EagerInstantiator {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             if (field.isAnnotationPresent(Inject.class)) {
-//                System.out.println(field.getType());
                 Class<?> type = field.getType();
                 Object fieldInstance = instantiate(type);
                 field.set(instance,fieldInstance);
