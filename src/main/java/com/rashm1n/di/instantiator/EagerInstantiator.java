@@ -1,6 +1,6 @@
 package com.rashm1n.di.instantiator;
 
-import com.rashm1n.annotations.Inject;
+import com.rashm1n.di.annotations.Inject;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
