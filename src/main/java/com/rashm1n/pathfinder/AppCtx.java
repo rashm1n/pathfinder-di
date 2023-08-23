@@ -1,11 +1,10 @@
-package com.rashm1n.di;
+package com.rashm1n.pathfinder;
 
-import com.rashm1n.di.instantiator.EagerInstantiator;
-import com.rashm1n.di.registry.InstanceHolder;
-import com.rashm1n.di.registry.InstanceRegistry;
-import com.rashm1n.di.scanner.ClassScanner;
-import com.rashm1n.di.scanner.Scanner;
-import jdk.jfr.Name;
+import com.rashm1n.pathfinder.instantiator.EagerInstantiator;
+import com.rashm1n.pathfinder.registry.InstanceHolder;
+import com.rashm1n.pathfinder.registry.InstanceRegistry;
+import com.rashm1n.pathfinder.scanner.ClassScanner;
+import com.rashm1n.pathfinder.scanner.Scanner;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

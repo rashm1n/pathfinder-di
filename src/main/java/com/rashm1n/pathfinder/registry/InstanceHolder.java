@@ -1,4 +1,4 @@
-package com.rashm1n.di.registry;
+package com.rashm1n.pathfinder.registry;
 
 public class InstanceHolder<T> {
     private T instance;

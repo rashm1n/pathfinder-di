@@ -1,7 +1,7 @@
-package com.rashm1n.di.instantiator;
+package com.rashm1n.pathfinder.instantiator;
 
-import com.rashm1n.di.annotations.Inject;
-import com.rashm1n.di.annotations.Named;
+import com.rashm1n.pathfinder.annotations.Inject;
+import com.rashm1n.pathfinder.annotations.Named;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

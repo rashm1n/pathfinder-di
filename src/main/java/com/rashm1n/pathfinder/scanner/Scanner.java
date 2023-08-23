@@ -1,4 +1,4 @@
-package com.rashm1n.di.scanner;
+package com.rashm1n.pathfinder.scanner;
 
 import java.io.IOException;
 import java.util.Map;
