@@ -1,8 +1,13 @@
 package com.rashm1n.pathfinder;
 
+import com.rashm1n.pathfinder.annotations.Singleton;
+import com.rashm1n.pathfinder.exceptions.InvalidAnnotationException;
 import com.rashm1n.pathfinder.instantiator.EagerInstantiator;
+import com.rashm1n.pathfinder.instantiator.InstanceMaker;
+import com.rashm1n.pathfinder.instantiator.SingletonMaker;
 import com.rashm1n.pathfinder.registry.InstanceHolder;
 import com.rashm1n.pathfinder.registry.InstanceRegistry;
+import com.rashm1n.pathfinder.registry.SingletonRegistry;
 import com.rashm1n.pathfinder.scanner.ClassScanner;
 import com.rashm1n.pathfinder.scanner.Scanner;
 
@@ -12,9 +17,11 @@ import java.util.Map;
 
 public class AppCtx {
     private InstanceRegistry registry;
+    private SingletonRegistry singletonRegistry;
 
     public AppCtx() {
         registry = new InstanceRegistry();
+        singletonRegistry = new SingletonRegistry();
     }
 
     public AppCtx(String basePackage) throws IOException {
@@ -25,17 +32,14 @@ public class AppCtx {
         classNameMap.forEach((name, clazz)-> {
             try {
                 if (!clazz.isInterface()) {
-                    registry.addInstance(name,new InstanceHolder<>(EagerInstantiator.instantiate(clazz, classNameMap)));
+                    if (clazz.isAnnotationPresent(Singleton.class)) {
+                        registry.addInstance(name,new InstanceHolder<>(SingletonMaker.instantiate(clazz)));
+                    } else {
+                        registry.addInstance(name,new InstanceHolder<>(InstanceMaker.instantiate(clazz)));
+                    }
                 }
-            } catch (InvocationTargetException e) {
-                throw new RuntimeException(e);
-            } catch (InstantiationException e) {
-                throw new RuntimeException(e);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            } catch (NoSuchMethodException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
+                     InvalidAnnotationException e) {
                 throw new RuntimeException(e);
             }
         });

@@ -1,5 +1,7 @@
 package com.rashm1n.pathfinder.scanner;
 
+import com.rashm1n.pathfinder.util.Constants;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -28,11 +30,13 @@ public class ClassScanner implements Scanner {
                         throw new RuntimeException(e);
                     }
                 } else {
-                    String name = basePath + '.' + i.getName().replace(".class", "");
-                    try {
-                        classNameList.put(name,Class.forName(name));
-                    } catch (ClassNotFoundException e) {
-                        throw new RuntimeException(e);
+                    if (i.getName().endsWith(Constants.CLASS_EXTENSION)) {
+                        String name = basePath + '.' + i.getName().replace(Constants.CLASS_EXTENSION, "");
+                        try {
+                            classNameList.put(name,Class.forName(name));
+                        } catch (ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             });
