@@ -10,7 +10,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ClassScanner implements Scanner {
+public class ClassPathScanner implements Scanner {
     private Map<String, Class<?>> classNameList = new HashMap<>();
 
     public void scan(String basePath) throws IOException {

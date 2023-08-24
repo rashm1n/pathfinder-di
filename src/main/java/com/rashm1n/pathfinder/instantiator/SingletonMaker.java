@@ -24,6 +24,7 @@ public class SingletonMaker {
             throw new InvalidAnnotationException();
         }
 
+        // TODO - Use the selected constructor
         Constructor<?> constructor = clazz.getConstructors()[0];
         Object instance = constructor.newInstance();
 
